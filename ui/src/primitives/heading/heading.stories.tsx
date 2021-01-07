@@ -9,7 +9,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const accent = boolean('Accent', false, 'Props')
 
   const muted = boolean('Muted', false, 'Props')

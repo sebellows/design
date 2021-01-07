@@ -1,6 +1,6 @@
 import {createContext} from 'react'
 
-export interface PortalContextInterface {
+export interface PortalContextValue {
   boundaryElement: HTMLElement | null
   element: HTMLElement | null
 }
@@ -9,7 +9,7 @@ let globalElement: HTMLDivElement | null = null
 
 export const defaultContextValue = {
   boundaryElement: null,
-  get element() {
+  get element(): HTMLDivElement {
     if (globalElement) return globalElement
 
     globalElement = document.createElement('div')
@@ -20,4 +20,4 @@ export const defaultContextValue = {
   },
 }
 
-export const PortalContext = createContext<PortalContextInterface>(defaultContextValue)
+export const PortalContext = createContext<PortalContextValue>(defaultContextValue)

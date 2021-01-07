@@ -20,7 +20,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   return (
     <LayerProvider>
       <Example />
@@ -28,7 +28,7 @@ export const plain = () => {
   )
 }
 
-export const multipleRoots = () => {
+export const multipleRoots = (): React.ReactNode => {
   return (
     <Stack space={4}>
       <LayerProvider zOffset={100}>

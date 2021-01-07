@@ -2,12 +2,15 @@ import {useId} from '@reach/auto-id'
 import React, {forwardRef, useCallback, useEffect, useState} from 'react'
 import ReactIs from 'react-is'
 import styled from 'styled-components'
-import {getResponsiveProp} from '../../styles'
+import {_getResponsiveProp} from '../../styles'
 import {ThemeColorSpotKey, useTheme} from '../../theme'
 import {Text} from '../text'
 import {avatarStyle, responsiveAvatarSizeStyle} from './styles'
 import {AvatarPosition, AvatarSize, AvatarStatus} from './types'
 
+/**
+ * @public
+ */
 export interface AvatarProps {
   animateArrowFrom?: AvatarPosition
   arrowPosition?: AvatarPosition
@@ -38,6 +41,9 @@ const Stroke = styled.ellipse(avatarStyle.stroke)
 
 const Initials = styled.div(avatarStyle.initials)
 
+/**
+ * @public
+ */
 export const Avatar = forwardRef(
   (props: AvatarProps & Omit<React.HTMLProps<HTMLDivElement>, 'ref'>, ref) => {
     const {
@@ -54,7 +60,7 @@ export const Avatar = forwardRef(
       ...restProps
     } = props
     const as = ReactIs.isValidElementType(asProp) ? asProp : 'div'
-    const size: AvatarSize[] = getResponsiveProp(sizeProp, [0])
+    const size: AvatarSize[] = _getResponsiveProp(sizeProp, [0])
     const theme = useTheme()
     const color = theme.sanity.color.spot[colorKey] || theme.sanity.color.spot.gray
 

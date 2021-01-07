@@ -1,11 +1,14 @@
 import React, {cloneElement, useCallback, useState} from 'react'
 import ReactIs from 'react-is'
-import {isHTMLElement} from '../../helpers'
+import {_isHTMLElement} from '../../helpers'
 import {useClickOutside} from '../../hooks'
 import {Popover} from '../../primitives'
 import {ThemeColorSchemeKey} from '../../theme'
 import {Placement} from '../../types'
 
+/**
+ * @public
+ */
 export interface MenuButtonProps {
   boundaryElement?: HTMLElement
   button: React.ReactElement
@@ -21,6 +24,9 @@ export interface MenuButtonProps {
   portal?: boolean
 }
 
+/**
+ * @public
+ */
 export function MenuButton({
   boundaryElement,
   button: buttonProp,
@@ -30,7 +36,7 @@ export function MenuButton({
   popoverScheme,
   portal,
   popoverRadius,
-}: MenuButtonProps) {
+}: MenuButtonProps): React.ReactElement {
   const [open, setOpen] = useState(false)
   const [focusLast, setFocusLast] = useState(false)
   const [buttonElement, setButtonElement] = useState<HTMLButtonElement | null>(null)
@@ -70,7 +76,7 @@ export function MenuButton({
     (event: React.FocusEvent<HTMLButtonElement>) => {
       const target = event.relatedTarget
 
-      if (isHTMLElement(target) && !menuElement?.contains(target)) {
+      if (_isHTMLElement(target) && !menuElement?.contains(target)) {
         setOpen(false)
       }
     },

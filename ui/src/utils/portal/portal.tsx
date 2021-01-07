@@ -1,16 +1,23 @@
+import React from 'react'
 import ReactDOM from 'react-dom'
 
 import {usePortal} from './hooks'
 
-interface PortalProps {
+/**
+ * @public
+ */
+export interface PortalProps {
   children: React.ReactNode
 }
 
-export function Portal(props: PortalProps) {
+/**
+ * @public
+ */
+export function Portal(props: PortalProps): React.ReactElement {
   const portal = usePortal()
 
   if (!portal.element) {
-    return null
+    return <></>
   }
 
   return ReactDOM.createPortal(props.children, portal.element)

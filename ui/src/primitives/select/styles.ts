@@ -1,5 +1,5 @@
-import {css} from 'styled-components'
-import {getResponsiveProp, rem, responsive, ThemeProps} from '../../styles'
+import {css, FlattenSimpleInterpolation} from 'styled-components'
+import {_getResponsiveProp, _rem, _responsive, _ThemeProps} from '../../styles'
 import {
   focusRingBorderStyle,
   focusRingStyle,
@@ -8,7 +8,7 @@ import {
 } from '../../styles/internal'
 import {ThemeFontSize} from '../../theme'
 
-function rootStyle() {
+function rootStyle(): FlattenSimpleInterpolation {
   return css`
     position: relative;
     width: stretch;
@@ -19,7 +19,7 @@ function rootStyle() {
   `
 }
 
-function inputBaseStyle(props: ThemeProps) {
+function inputBaseStyle(props: _ThemeProps) {
   const {theme} = props
   const font = theme.sanity.fonts.text
 
@@ -35,7 +35,7 @@ function inputBaseStyle(props: ThemeProps) {
   `
 }
 
-function inputColorStyle(props: ThemeProps) {
+function inputColorStyle(props: _ThemeProps) {
   const {theme} = props
   const {focusRing, input} = theme.sanity
   const color = theme.sanity.color.input
@@ -83,19 +83,20 @@ function inputColorStyle(props: ThemeProps) {
 }
 
 function textSize(size: ThemeFontSize) {
-  return {fontSize: rem(size.fontSize), lineHeight: rem(size.lineHeight)}
+  return {fontSize: _rem(size.fontSize), lineHeight: _rem(size.lineHeight)}
 }
 
-function inputTextSizeStyle(props: {$fontSize?: number | number[]} & ThemeProps) {
+function inputTextSizeStyle(props: {$fontSize?: number | number[]} & _ThemeProps) {
   const {theme, $fontSize} = props
   const {sizes} = theme.sanity.fonts.text
 
-  return responsive(theme.sanity.media, getResponsiveProp($fontSize), (sizeIndex) =>
+  return _responsive(theme.sanity.media, _getResponsiveProp($fontSize), (sizeIndex) =>
     textSize(sizes[sizeIndex] || sizes[2])
   )
 }
 
-function inputStyle() {
+// @todo: typing
+function inputStyle(): any {
   return [
     responsiveRadiusStyle,
     inputBaseStyle,
@@ -105,7 +106,7 @@ function inputStyle() {
   ]
 }
 
-function iconBoxStyle(props: ThemeProps) {
+function iconBoxStyle(props: _ThemeProps): FlattenSimpleInterpolation {
   const {theme} = props
   const color = theme.sanity.color.input
 

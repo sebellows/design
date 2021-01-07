@@ -8,7 +8,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const border = boolean('Border', true, 'Props')
 
   const customValidity = text('Custom validity', '', 'Props') || undefined

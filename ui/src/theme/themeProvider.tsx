@@ -4,12 +4,15 @@ import {ThemeColorSchemeKey, ThemeColorName} from './lib/theme'
 import {ThemeContext} from './themeContext'
 import {RootTheme, Theme} from './types'
 
+/**
+ * @public
+ */
 export function ThemeProvider(props: {
   children?: React.ReactNode
   scheme?: ThemeColorSchemeKey
   theme: RootTheme
   tone?: ThemeColorName
-}) {
+}): React.ReactElement {
   const {children, scheme = 'light', theme: rootTheme, tone = 'default'} = props
   const {color: rootColor, ...restTheme} = rootTheme
   const colorScheme = rootColor[scheme] || rootColor.light

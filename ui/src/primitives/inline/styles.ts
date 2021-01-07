@@ -1,7 +1,8 @@
-import {getResponsiveProp, rem, responsive, ThemeProps} from '../../styles'
+import {CSSObject} from 'styled-components'
+import {_getResponsiveProp, _rem, _responsive, _ThemeProps} from '../../styles'
 import {ResponsiveInlineSpaceStyleProps} from './types'
 
-export function inlineBaseStyle() {
+export function inlineBaseStyle(): CSSObject {
   return {
     lineHeight: 0,
 
@@ -16,11 +17,13 @@ export function inlineBaseStyle() {
   }
 }
 
-export function inlineSpaceStyle(props: ResponsiveInlineSpaceStyleProps & ThemeProps) {
+export function inlineSpaceStyle(
+  props: ResponsiveInlineSpaceStyleProps & _ThemeProps
+): CSSObject[] {
   const {theme} = props
 
-  return responsive(theme.sanity.media, getResponsiveProp(props.$space), (spaceIndex) => {
-    const space = rem(theme.sanity.space[spaceIndex])
+  return _responsive(theme.sanity.media, _getResponsiveProp(props.$space), (spaceIndex) => {
+    const space = _rem(theme.sanity.space[spaceIndex])
 
     return {
       margin: `-${space} 0 0 -${space}`,

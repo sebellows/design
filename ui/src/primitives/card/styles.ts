@@ -1,13 +1,15 @@
-import {css} from 'styled-components'
-import {ThemeProps} from '../../styles'
+import {css, FlattenSimpleInterpolation} from 'styled-components'
+import {_ThemeProps} from '../../styles'
 import {ThemeColorBase, ThemeColorCardState} from '../../theme'
 import {CardStyleProps} from './types'
 
-export function cardStyle(props: CardStyleProps & ThemeProps) {
-  return [cardBaseStyle, cardColorStyle(props)]
+export function cardStyle(): ((
+  props: CardStyleProps & _ThemeProps
+) => FlattenSimpleInterpolation)[] {
+  return [cardBaseStyle, cardColorStyle]
 }
 
-export function cardBaseStyle() {
+export function cardBaseStyle(): FlattenSimpleInterpolation {
   return css`
     &[data-as='button'] {
       -webkit-font-smoothing: inherit;
@@ -57,7 +59,7 @@ function vars(base: ThemeColorBase, color: ThemeColorCardState) {
   `
 }
 
-export function cardColorStyle(props: CardStyleProps & ThemeProps) {
+export function cardColorStyle(props: CardStyleProps & _ThemeProps): FlattenSimpleInterpolation {
   const {theme} = props
   const {base, card} = theme.sanity.color
 

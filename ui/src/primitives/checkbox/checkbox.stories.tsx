@@ -9,7 +9,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const props = () => {
+export const props = (): React.ReactNode => {
   const props = {
     checked: boolean('Checked', false, 'Props'),
     disabled: boolean('Disabled', false, 'Props'),
@@ -29,7 +29,7 @@ export const props = () => {
   )
 }
 
-export const example = () => {
+export const example = (): React.ReactNode => {
   return <Example />
 }
 

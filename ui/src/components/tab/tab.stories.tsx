@@ -8,7 +8,7 @@ export default {
   title: 'Components/Tab',
 }
 
-export const example = () => (
+export const example = (): React.ReactNode => (
   <Card padding={3}>
     <TabsExample />
   </Card>

@@ -1,18 +1,24 @@
 import {CloseIcon} from '@sanity/icons'
 import React, {cloneElement, forwardRef, useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
-import {focusFirstDescendant} from '../../helpers'
+import {_focusFirstDescendant} from '../../helpers'
 import {useForwardedRef} from '../../hooks'
 import {Box, Button, Card, Spinner, Text, TextInput} from '../../primitives'
-import {getResponsiveProp} from '../../styles'
+import {_getResponsiveProp} from '../../styles'
 import {AutocompleteOption} from './autocompleteOption'
 import {Root, LoadingCard, ListBoxContainer, ListBoxCard} from './styles'
 
-export interface BaseAutocompleteOption {
+/**
+ * @public
+ */
+export interface AutocompleteBaseOption {
   value: string
 }
 
-export interface AutocompleteProps<Option extends BaseAutocompleteOption> {
+/**
+ * @public
+ */
+export interface AutocompleteProps<Option extends AutocompleteBaseOption> {
   border?: boolean
   filterOption?: (query: string, option: Option) => boolean
   fontSize?: number | number[]
@@ -62,10 +68,10 @@ const ClearButtonBox = styled(Box)`
   }
 `
 
-const defaultRenderValue = (value: string, option?: BaseAutocompleteOption) =>
+const defaultRenderValue = (value: string, option?: AutocompleteBaseOption) =>
   option ? option.value : value
 
-const defaultFilterOption = (query: string, option: BaseAutocompleteOption) =>
+const defaultFilterOption = (query: string, option: AutocompleteBaseOption) =>
   option.value.toLowerCase().indexOf(query.toLowerCase()) > -1
 
 const LIST_IGNORE_KEYS = [
@@ -83,7 +89,7 @@ const LIST_IGNORE_KEYS = [
 ]
 
 const InnerAutocomplete = forwardRef(
-  <Option extends BaseAutocompleteOption>(
+  <Option extends AutocompleteBaseOption>(
     props: AutocompleteProps<Option> &
       Omit<React.HTMLProps<HTMLInputElement>, AutocompleteOverriddenInputAttrKey>,
     ref: React.Ref<HTMLInputElement>
@@ -108,7 +114,7 @@ const InnerAutocomplete = forwardRef(
     } = props
 
     const defaultRenderOption = useCallback(
-      ({value}: BaseAutocompleteOption) => (
+      ({value}: AutocompleteBaseOption) => (
         <Card as="button" padding={paddingProp} tone="inherit">
           <Text size={fontSize}>{value}</Text>
         </Card>
@@ -130,7 +136,7 @@ const InnerAutocomplete = forwardRef(
     const inputRef = useRef<HTMLInputElement | null>(null)
     const listRef = useRef<HTMLUListElement | null>(null)
     const activeItemId = selectedIndex > -1 ? `${id}-option-${selectedIndex}` : undefined
-    const padding = getResponsiveProp(paddingProp)
+    const padding = _getResponsiveProp(paddingProp)
     const rootRef = useRef<HTMLDivElement | null>(null)
     const currentOption = value ? options.find((o) => o.value === value) : undefined
     const filteredOptions = options.filter((option) => (query ? filterOption(query, option) : true))
@@ -252,7 +258,7 @@ const InnerAutocomplete = forwardRef(
       const selectedItemElement = listElement.childNodes[selectedIndex] as HTMLLIElement | undefined
 
       if (selectedItemElement) {
-        focusFirstDescendant(selectedItemElement)
+        _focusFirstDescendant(selectedItemElement)
       }
     }, [selectedIndex])
 
@@ -336,7 +342,10 @@ const InnerAutocomplete = forwardRef(
 
 InnerAutocomplete.displayName = 'Autocomplete'
 
-export const Autocomplete = InnerAutocomplete as <Option extends BaseAutocompleteOption>(
+/**
+ * @public
+ */
+export const Autocomplete = InnerAutocomplete as <Option extends AutocompleteBaseOption>(
   props: AutocompleteProps<Option> &
     Omit<React.HTMLProps<HTMLInputElement>, AutocompleteOverriddenInputAttrKey> & {
       ref?: React.Ref<HTMLInputElement>

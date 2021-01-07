@@ -1,3 +1,8 @@
+import React from 'react'
+
+/**
+ * @public
+ */
 export interface ToastParams {
   closable?: boolean
   description?: React.ReactNode

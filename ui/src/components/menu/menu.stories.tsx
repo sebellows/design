@@ -23,7 +23,7 @@ export default {
 
 const preventMouseEvent = (event: React.MouseEvent) => event.preventDefault()
 
-export const menu = () => (
+export const menu = (): React.ReactNode => (
   <LayerProvider>
     <Card>
       <Menu>
@@ -43,7 +43,7 @@ export const menu = () => (
   </LayerProvider>
 )
 
-export const menuButton = () => (
+export const menuButton = (): React.ReactNode => (
   <LayerProvider>
     <Inline space={2}>
       <Button id="prev-button" text="Prev" />
@@ -73,7 +73,7 @@ export const menuButton = () => (
   </LayerProvider>
 )
 
-export const menuButtonWithGroup = () => (
+export const menuButtonWithGroup = (): React.ReactNode => (
   <LayerProvider>
     <MenuButton
       button={<Avatar as="button" color="magenta" size={2} />}
@@ -98,7 +98,7 @@ export const menuButtonWithGroup = () => (
   </LayerProvider>
 )
 
-export const menuItemTones = () => (
+export const menuItemTones = (): React.ReactNode => (
   <LayerProvider>
     <Card radius={3} shadow={3}>
       <Menu>

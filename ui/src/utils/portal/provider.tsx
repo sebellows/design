@@ -9,7 +9,10 @@ interface PortalProviderProps {
 
 const __BROWSER__ = typeof window !== 'undefined'
 
-export function PortalProvider(props: PortalProviderProps) {
+/**
+ * @public
+ */
+export function PortalProvider(props: PortalProviderProps): React.ReactElement {
   return (
     <PortalContext.Provider
       value={{

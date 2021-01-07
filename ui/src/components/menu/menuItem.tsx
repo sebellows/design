@@ -23,6 +23,9 @@ interface MenuItemProps extends ResponsivePaddingProps, ResponsiveRadiusProps {
   tone?: ThemeColorToneKey
 }
 
+/**
+ * @public
+ */
 export const MenuItem = forwardRef(
   (
     props: MenuItemProps & Omit<React.HTMLProps<HTMLDivElement>, 'height' | 'ref'>,

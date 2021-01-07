@@ -8,7 +8,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const responsive = () => {
+export const responsive = (): React.ReactNode => {
   return (
     <Container width="auto">
       <Card padding={4}>

@@ -9,13 +9,16 @@ const Root = styled.div`
   overflow: hidden;
 `
 
+/**
+ * @public
+ */
 export function SrOnly({
   as,
   children,
 }: {
   as?: React.ElementType | keyof JSX.IntrinsicElements
   children?: React.ReactNode
-}) {
+}): React.ReactElement {
   return (
     <Root aria-hidden as={as} data-ui="SrOnly">
       {children}

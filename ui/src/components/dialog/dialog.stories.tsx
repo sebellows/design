@@ -24,7 +24,7 @@ export default {
   title: 'Components/Dialog',
 }
 
-export const props = () => {
+export const props = (): React.ReactNode => {
   const header = text('Header', 'Props example', 'Props')
 
   const width = select(
@@ -49,7 +49,7 @@ export const props = () => {
   )
 }
 
-export const nested = () => {
+export const nested = (): React.ReactNode => {
   return (
     <LayerProvider>
       <NestedExample />
@@ -57,7 +57,7 @@ export const nested = () => {
   )
 }
 
-export const onScroll = () => {
+export const onScroll = (): React.ReactNode => {
   return (
     <LayerProvider>
       <OnScrollExample />
@@ -65,7 +65,7 @@ export const onScroll = () => {
   )
 }
 
-export const layering = () => {
+export const layering = (): React.ReactNode => {
   return (
     <LayerProvider>
       <Layer zOffset={10} id="a">
@@ -95,7 +95,7 @@ function DebugLayer() {
   return <Code language="json">{JSON.stringify(layer, null, 2)}</Code>
 }
 
-export const position = () => {
+export const position = (): React.ReactNode => {
   const open = boolean('Open', false, 'Props')
   const position = select('Position', ['fixed', 'absolute'], 'fixed', 'Props')
 

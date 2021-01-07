@@ -20,6 +20,9 @@ import {
   ResponsivePaddingProps,
 } from '../types'
 
+/**
+ * @public
+ */
 export interface BoxProps
   extends ResponsiveFlexItemProps,
     ResponsiveBoxProps,
@@ -43,6 +46,9 @@ const Root = styled.div<
   responsivePaddingStyle
 )
 
+/**
+ * @public
+ */
 export const Box = forwardRef(
   (props: BoxProps & Omit<React.HTMLProps<HTMLDivElement>, 'height'>, ref) => {
     const {

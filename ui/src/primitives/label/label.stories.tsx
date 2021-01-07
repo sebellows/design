@@ -8,7 +8,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const size = select(
     'Size',
     {'0': 0, '1': 1, '2 (default)': undefined, '3': 3, '4': 4},

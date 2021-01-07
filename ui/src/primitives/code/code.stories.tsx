@@ -23,7 +23,7 @@ export default {
   ],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const code = text('Code', `console.log('Hello, world')`, 'Props')
 
   const language = select(

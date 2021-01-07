@@ -11,7 +11,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const props = () => {
+export const props = (): React.ReactNode => {
   const border = boolean('Border', false, 'Props')
 
   const as = select(
@@ -113,7 +113,7 @@ export const props = () => {
 
 const StyledCard = styled(Card).attrs({forwardedAs: 'ol'})``
 
-export const styledCard = () => {
+export const styledCard = (): React.ReactNode => {
   return (
     <StyledCard>
       <Text as="li">Styled</Text>
@@ -121,7 +121,7 @@ export const styledCard = () => {
   )
 }
 
-export const interactiveCard = () => {
+export const interactiveCard = (): React.ReactNode => {
   const selected = boolean('Selected', false, 'Props')
   const pressed = boolean('Pressed', false, 'Props')
 
@@ -142,7 +142,7 @@ export const interactiveCard = () => {
   )
 }
 
-export const allTones = () => {
+export const allTones = (): React.ReactNode => {
   return (
     <Stack space={3}>
       <Card padding={4} radius={2} shadow={4} style={{textAlign: 'center'}} tone="default">
@@ -167,7 +167,7 @@ export const allTones = () => {
   )
 }
 
-export const asButton = () => {
+export const asButton = (): React.ReactNode => {
   return (
     <Grid columns={2}>
       <Card padding={3}>

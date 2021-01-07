@@ -16,6 +16,9 @@ interface TabProps {
   selected?: boolean
 }
 
+/**
+ * @public
+ */
 export const Tab = forwardRef(
   (
     props: TabProps &

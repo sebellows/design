@@ -13,7 +13,7 @@ export default {
   title: 'Components/Autocomplete',
 }
 
-export function _default() {
+export function _default(): React.ReactNode {
   const options = countries.map((country) => ({value: country.code}))
 
   return (
@@ -23,7 +23,7 @@ export function _default() {
   )
 }
 
-export const custom = () => {
+export const custom = (): React.ReactNode => {
   const data: ExampleOption[] = countries.map((d) => ({value: d.code, title: d.name}))
 
   const border = boolean('Border', true, 'Props')
@@ -127,7 +127,7 @@ function CustomExample({
   )
 }
 
-export const async = () => {
+export const async = (): React.ReactNode => {
   return (
     <Card padding={4}>
       <AsyncExample />

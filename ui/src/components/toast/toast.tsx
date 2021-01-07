@@ -4,7 +4,10 @@ import styled from 'styled-components'
 import {Box, Card, Flex, Stack, Text} from '../../primitives'
 import {ThemeColorToneKey} from '../../theme'
 
-interface ToastProps {
+/**
+ * @public
+ */
+export interface ToastProps {
   closable?: boolean
   description?: React.ReactNode
   onClose?: () => void
@@ -23,9 +26,12 @@ const Root = styled(Card)`
   pointer-events: all;
 `
 
+/**
+ * @public
+ */
 export function Toast(
   props: ToastProps & Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'height' | 'ref' | 'title'>
-) {
+): React.ReactElement {
   const {closable, description, onClose, title, status, ...restProps} = props
   const cardTone = status ? STATUS_CARD_TONE[status] : 'default'
 

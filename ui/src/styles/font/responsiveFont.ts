@@ -1,16 +1,16 @@
 import {CSSObject} from 'styled-components'
 import {ThemeFontSize, ThemeFontKey} from '../../theme'
-import {getResponsiveProp, rem, responsive} from '../helpers'
-import {ThemeProps} from '../types'
-import {ResponsiveFontStyleProps} from './types'
+import {_getResponsiveProp, _rem, _responsive} from '../helpers'
+import {_ThemeProps} from '../types'
+import {_ResponsiveFontStyleProps} from './types'
 
 /**
  * A utility function getting responsive font styles.
- * @beta Should not be used in production, as this might change.
+ * @internal Should not be used in production, as this might change.
  */
 export function responsiveFont(
   fontKey: ThemeFontKey,
-  props: ResponsiveFontStyleProps & ThemeProps
+  props: _ResponsiveFontStyleProps & _ThemeProps
 ): CSSObject[] {
   const {$size, $weight, theme} = props
   const {fonts, media} = theme.sanity
@@ -44,7 +44,7 @@ export function responsiveFont(
     },
   } as CSSObject
 
-  const resp = responsive(media, getResponsiveProp($size), (sizeIndex) =>
+  const resp = _responsive(media, _getResponsiveProp($size), (sizeIndex) =>
     fontSize(sizes[sizeIndex] || defaultSize)
   )
 
@@ -56,13 +56,13 @@ export function fontSize(size: ThemeFontSize): CSSObject {
   const capHeight = size.lineHeight - negHeight
 
   return {
-    fontSize: rem(size.fontSize),
-    lineHeight: rem(size.lineHeight),
-    letterSpacing: rem(size.letterSpacing),
-    transform: `translateY(${rem(size.descenderHeight)})`,
+    fontSize: _rem(size.fontSize),
+    lineHeight: _rem(size.lineHeight),
+    letterSpacing: _rem(size.letterSpacing),
+    transform: `translateY(${_rem(size.descenderHeight)})`,
 
     '&:before': {
-      marginTop: `calc(${rem(0 - negHeight)} - 1px)`,
+      marginTop: `calc(${_rem(0 - negHeight)} - 1px)`,
     },
 
     '&:after': {
@@ -70,8 +70,8 @@ export function fontSize(size: ThemeFontSize): CSSObject {
     },
 
     '& [data-sanity-icon]': {
-      fontSize: rem(size.iconSize),
-      margin: rem((capHeight - size.iconSize) / 2),
+      fontSize: _rem(size.iconSize),
+      margin: _rem((capHeight - size.iconSize) / 2),
     },
   }
 }

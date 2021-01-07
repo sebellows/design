@@ -1,8 +1,8 @@
-import {css} from 'styled-components'
-import {rem, ThemeProps} from '../../styles'
+import {css, FlattenSimpleInterpolation} from 'styled-components'
+import {_rem, _ThemeProps} from '../../styles'
 import {focusRingBorderStyle, focusRingStyle} from '../../styles/internal'
 
-export function radioBaseStyle() {
+export function radioBaseStyle(): FlattenSimpleInterpolation {
   return css`
     position: relative;
     &:not([hidden]) {
@@ -11,7 +11,7 @@ export function radioBaseStyle() {
   `
 }
 
-export function inputElementStyle(props: ThemeProps) {
+export function inputElementStyle(props: _ThemeProps): FlattenSimpleInterpolation {
   const {theme} = props
   const {focusRing, input} = theme.sanity
   const color = theme.sanity.color.input
@@ -29,14 +29,14 @@ export function inputElementStyle(props: ThemeProps) {
     z-index: 1;
     padding: 0;
     margin: 0;
-    border-radius: ${rem(input.radio.size / 2)};
+    border-radius: ${_rem(input.radio.size / 2)};
 
     & + span {
       display: block;
       position: relative;
-      height: ${rem(input.radio.size)};
-      width: ${rem(input.radio.size)};
-      border-radius: ${rem(input.radio.size / 2)};
+      height: ${_rem(input.radio.size)};
+      width: ${_rem(input.radio.size)};
+      border-radius: ${_rem(input.radio.size / 2)};
       background: ${color.default.enabled.bg};
       box-shadow: ${focusRingBorderStyle({
         color: color.default.enabled.border,
@@ -46,11 +46,11 @@ export function inputElementStyle(props: ThemeProps) {
       &::after {
         content: '';
         position: absolute;
-        top: ${rem(dist)};
-        left: ${rem(dist)};
-        height: ${rem(input.radio.markSize)};
-        width: ${rem(input.radio.markSize)};
-        border-radius: ${rem(input.radio.markSize / 2)};
+        top: ${_rem(dist)};
+        left: ${_rem(dist)};
+        height: ${_rem(input.radio.markSize)};
+        width: ${_rem(input.radio.markSize)};
+        border-radius: ${_rem(input.radio.markSize / 2)};
         background: ${color.default.enabled.fg};
         opacity: 0;
       }

@@ -1,9 +1,15 @@
 import {CSSObject} from 'styled-components'
-import {BaseTheme, ThemeColor} from './lib/theme'
+import {_BaseTheme, ThemeColor} from './lib/theme'
 
-export type RootTheme = BaseTheme<Styles>
+/**
+ * @public
+ */
+export type RootTheme = _BaseTheme<_Styles>
 
-export interface Styles {
+/**
+ * @internal
+ */
+export interface _Styles {
   button?: {
     root?: CSSObject
   }
@@ -12,6 +18,9 @@ export interface Styles {
   }
 }
 
+/**
+ * @public
+ */
 export interface Theme {
   sanity: Omit<RootTheme, 'color'> & {
     color: ThemeColor

@@ -1,7 +1,10 @@
 import {useContext} from 'react'
-import {PortalContext} from './context'
+import {PortalContext, PortalContextValue} from './context'
 
-export function usePortal() {
+/**
+ * @public
+ */
+export function usePortal(): PortalContextValue {
   const portal = useContext(PortalContext)
 
   if (!portal) {

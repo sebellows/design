@@ -1,12 +1,15 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 type ClickOutsideListener = (event: Event) => void
 
+/**
+ * @public
+ */
 export function useClickOutside(
   listener: ClickOutsideListener,
   elementsArg: Array<HTMLElement | null> = [],
   boundaryElement?: HTMLElement | null
-) {
+): React.Dispatch<React.SetStateAction<HTMLElement | null>> {
   const [element, setElement] = useState<HTMLElement | null>(null)
   const elements = [element, ...elementsArg]
 

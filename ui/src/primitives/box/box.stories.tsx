@@ -9,7 +9,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const props = () => {
+export const props = (): React.ReactNode => {
   const padding = select(
     'Padding',
     {
@@ -37,11 +37,11 @@ export const props = () => {
   )
 }
 
-export const custom = () => {
+export const custom = (): React.ReactNode => {
   return <Box padding={3}>Custom</Box>
 }
 
-export const responsive = () => {
+export const responsive = (): React.ReactNode => {
   return (
     <Box
       id="responsive-box"

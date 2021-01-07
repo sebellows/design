@@ -1,6 +1,9 @@
 import {useEffect} from 'react'
 
-export function useGlobalKeyDown(onKeyDown: (event: KeyboardEvent) => void) {
+/**
+ * @public
+ */
+export function useGlobalKeyDown(onKeyDown: (event: KeyboardEvent) => void): void {
   return useEffect(() => {
     addEventListener('keydown', onKeyDown)
 

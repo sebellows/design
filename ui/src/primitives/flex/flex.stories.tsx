@@ -18,7 +18,7 @@ const DebugCard = styled(Card)`
   justify-content: center;
 `
 
-export const plain = () => (
+export const plain = (): React.ReactNode => (
   <Flex
     direction={select(
       'Direction',

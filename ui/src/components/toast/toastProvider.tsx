@@ -15,7 +15,10 @@ interface ToastState {
   }[]
 }
 
-interface ToastProviderProps {
+/**
+ * @public
+ */
+export interface ToastProviderProps {
   children?: React.ReactNode
   padding?: number | number[]
   paddingX?: number | number[]
@@ -43,13 +46,16 @@ const ToastContainer = styled.div`
 
 let toastId = 0
 
+/**
+ * @public
+ */
 export function ToastProvider({
   children,
   padding = 4,
   paddingX,
   paddingY,
   zOffset,
-}: ToastProviderProps) {
+}: ToastProviderProps): React.ReactElement {
   const [state, setState] = useState<ToastState>({toasts: []})
   const toastsRef = useRef<{[key: string]: {timeoutId: NodeJS.Timeout}}>({})
 

@@ -9,7 +9,7 @@ export default {
   decorators: [withKnobs],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const arrow = boolean('Arrow', true, 'Props')
 
   const content = text('Content', 'Hello, world', 'Props')
@@ -128,7 +128,7 @@ function PropsExample(props: any) {
   )
 }
 
-export const recursive = () => {
+export const recursive = (): React.ReactNode => {
   return (
     <LayerProvider>
       <RecursiveExample />

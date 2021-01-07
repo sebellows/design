@@ -19,4 +19,4 @@ const radioProps = () => ({
   onBlur: action('onBlur'),
 })
 
-export const plain = () => <Radio {...radioProps()} />
+export const plain = (): React.ReactNode => <Radio {...radioProps()} />

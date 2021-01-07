@@ -3,19 +3,20 @@
   "version": "0.32.4",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
+  "typings": "dist/es/index.d.js",
   "files": [
     "/dist"
   ],
   "license": "MIT",
   "sideEffects": false,
   "scripts": {
-    "build": "run-p build-*",
+    "build": "run-p build-* && ts-node scripts/api-extract",
     "build-cjs": "tsc --module CommonJS --outDir dist/cjs --project tsconfig.dist.json --rootDir ./src --target ES5",
     "build-es": "tsc --module ES6 --outDir dist/es --project tsconfig.dist.json --rootDir ./src --target ES6",
     "clean": "rimraf dist",
     "lint": "eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
-    "prebuild": "npm run clean",
-    "prepublishOnly": "npm run build",
+    "prebuild": "run-s clean",
+    "prepublishOnly": "run-s build",
     "test": "jest",
     "type-check": "tsc --noEmit",
     "watch": "run-p watch-cjs watch-es",

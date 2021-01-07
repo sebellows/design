@@ -17,7 +17,7 @@ const iconOptions = Object.keys(icons).reduce((acc: {[key: string]: string}, key
   return acc
 }, {})
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const disabled = boolean('Disabled', false, 'Props')
 
   const fontSize = select(
@@ -149,7 +149,7 @@ const StyledButton1 = styled.a`
   }
 `
 
-export const styledButton1 = () => {
+export const styledButton1 = (): React.ReactNode => {
   return <Button as={StyledButton1} href="#" text="Test" />
 }
 
@@ -160,7 +160,7 @@ const StyledButton2 = styled(Button)`
   }
 `
 
-export const styledButton2 = () => {
+export const styledButton2 = (): React.ReactNode => {
   const props = {href: '#', text: 'Test'}
 
   // NOTE: This approach does not work with TypeScript

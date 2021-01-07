@@ -8,7 +8,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => (
+export const plain = (): React.ReactNode => (
   <Card padding={4}>
     <KBD style={{verticalAlign: 'top'}}>Ctrl</KBD>
   </Card>

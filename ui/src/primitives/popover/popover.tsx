@@ -7,12 +7,18 @@ import {ThemeColorSchemeKey, ThemeColorToneKey} from '../../theme'
 import {Placement} from '../../types'
 import {Layer, Portal, useBoundaryElement, usePortal} from '../../utils'
 import {Card} from '../card'
-import {ResponsiveWidthStyleProps} from '../container'
 import {responsiveContainerWidthStyle} from '../container/styles'
+import {ResponsiveWidthStyleProps} from '../container/types'
 import {ResponsiveRadiusProps, ResponsiveShadowProps, ResponsiveWidthProps} from '../types'
 import {PopoverArrow} from './arrow'
 
-interface PopoverProps extends ResponsiveRadiusProps, ResponsiveShadowProps, ResponsiveWidthProps {
+/**
+ * @public
+ */
+export interface PopoverProps
+  extends ResponsiveRadiusProps,
+    ResponsiveShadowProps,
+    ResponsiveWidthProps {
   allowedAutoPlacements?: Placement[]
   arrow?: boolean
   boundaryElement?: HTMLElement | null
@@ -93,6 +99,9 @@ const applyMaxSize: Modifier<any, any> = {
   },
 }
 
+/**
+ * @public
+ */
 export const Popover = forwardRef(
   (
     props: PopoverProps &

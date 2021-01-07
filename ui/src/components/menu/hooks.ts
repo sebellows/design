@@ -1,7 +1,7 @@
 import {useContext} from 'react'
-import {MenuContext} from './menuContext'
+import {MenuContext, MenuContextValue} from './menuContext'
 
-export function useMenu() {
+export function useMenu(): MenuContextValue {
   const menu = useContext(MenuContext)
 
   if (!menu) {

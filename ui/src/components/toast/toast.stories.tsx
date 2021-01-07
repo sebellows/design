@@ -8,9 +8,9 @@ export default {
   title: 'Components/Toast',
 }
 
-export const toast = () => <Toast title="Test" />
+export const toast = (): React.ReactNode => <Toast title="Test" />
 
-export const hook = () => (
+export const hook = (): React.ReactNode => (
   <ToastProvider>
     <UseToastExample />
   </ToastProvider>

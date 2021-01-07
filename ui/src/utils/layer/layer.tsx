@@ -5,6 +5,9 @@ import {useLayer} from './useLayer'
 
 const Root = styled.div({position: 'relative'})
 
+/**
+ * @public
+ */
 export interface LayerProps {
   as?: React.ElementType | keyof JSX.IntrinsicElements
   zOffset?: number
@@ -32,6 +35,9 @@ const LayerChildren = forwardRef(
 
 LayerChildren.displayName = 'LayerChildren'
 
+/**
+ * @public
+ */
 export const Layer = forwardRef(
   (
     props: LayerProps & Omit<React.HTMLProps<HTMLDivElement>, 'as'>,

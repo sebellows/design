@@ -8,7 +8,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => (
+export const plain = (): React.ReactNode => (
   <Card padding={4}>
     <Hotkeys keys={['Ctrl', 'Shift', 'P']} />
   </Card>

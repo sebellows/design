@@ -9,13 +9,19 @@ import {
 import {Box, BoxProps} from '../box'
 import {ResponsiveFlexProps, ResponsiveFlexItemProps} from '../types'
 
-interface FlexProps extends BoxProps, ResponsiveFlexProps, ResponsiveFlexItemProps {}
+/**
+ * @public
+ */
+export interface FlexProps extends BoxProps, ResponsiveFlexProps, ResponsiveFlexItemProps {}
 
 const Root = styled(Box)<FlexItemStyleProps & ResponsiveFlexStyleProps>(
   flexItemStyle,
   responsiveFlexStyle
 )
 
+/**
+ * @public
+ */
 export const Flex = forwardRef((props: FlexProps & React.HTMLProps<HTMLDivElement>, ref) => {
   const {align, as, direction = 'row', justify, wrap, ...restProps} = props
 

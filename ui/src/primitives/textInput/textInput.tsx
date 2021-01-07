@@ -8,7 +8,6 @@ import {
   responsiveInputPaddingStyle,
   textInputStyle,
   TextInputInputStyleProps,
-  TextInputRepresentationStyleProps,
   TextInputResponsivePaddingStyleProps,
 } from '../../styles/internal'
 import {ThemeFontWeightKey} from '../../theme'
@@ -16,7 +15,10 @@ import {Box} from '../box'
 import {Card} from '../card'
 import {Text} from '../text'
 
-interface TextInputProps {
+/**
+ * @public
+ */
+export interface TextInputProps {
   border?: boolean
   customValidity?: string
   fontSize?: number | number[]
@@ -76,7 +78,7 @@ const Input = styled.input<TextInputResponsivePaddingStyleProps & TextInputInput
   textInputStyle.input
 )
 
-const Presentation = styled.span<ResponsiveRadiusStyleProps & TextInputRepresentationStyleProps>(
+const Presentation = styled.span<ResponsiveRadiusStyleProps & TextInputInputStyleProps>(
   responsiveRadiusStyle,
   textInputStyle.representation
 )
@@ -93,6 +95,9 @@ const IconRightBox = styled(Box)`
   right: 0;
 `
 
+/**
+ * @public
+ */
 export const TextInput = forwardRef(
   (
     props: TextInputProps & Omit<React.HTMLProps<HTMLInputElement>, 'as' | 'type'>,

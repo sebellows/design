@@ -7,11 +7,11 @@ export default {
   decorators: [withKnobs],
 }
 
-export const color = () => {
+export const color = (): React.ReactNode => {
   return <ColorProviderExample />
 }
 
-export const context = () => {
+export const context = (): React.ReactNode => {
   return <DebugThemeContext />
 }
 

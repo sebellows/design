@@ -1,21 +1,27 @@
 import {CSSObject} from 'styled-components'
 import {Theme} from '../theme'
 
-export function fillCSSObject(propKeys: string[], value: any): CSSObject {
+function fillCSSObject(propKeys: string[], value: unknown): CSSObject {
   return propKeys.reduce((obj: CSSObject, propKey) => {
-    obj[propKey] = value
+    obj[propKey] = value as any
 
     return obj
   }, {})
 }
 
-export function rem(pixelValue: number): string | 0 {
+/**
+ * @internal
+ */
+export function _rem(pixelValue: number): string | 0 {
   if (pixelValue === 0) return 0
 
   return `${pixelValue / 16}rem`
 }
 
-export function responsive<T>(
+/**
+ * @internal
+ */
+export function _responsive<T>(
   media: number[],
   values: T[],
   callback: (value: T, index: number, array: T[]) => CSSObject
@@ -29,22 +35,35 @@ export function responsive<T>(
   })
 }
 
-export function getResponsiveProp<T = number>(val: T | T[] | undefined, defaultVal: T[] = []): T[] {
+/**
+ * @internal
+ */
+export function _getResponsiveProp<T = number>(
+  val: T | T[] | undefined,
+  defaultVal: T[] = []
+): T[] {
   if (val === undefined) return defaultVal
 
   return Array.isArray(val) ? val : [val]
 }
 
-export function getResponsiveSpace(theme: Theme, props: string[], spaceIndexes: number[] = []) {
+/**
+ * @internal
+ */
+export function _getResponsiveSpace(
+  theme: Theme,
+  props: string[],
+  spaceIndexes: number[] = []
+): CSSObject[] {
   if (!Array.isArray(spaceIndexes)) {
     throw new Error('the property must be array of numbers')
   }
 
   if (spaceIndexes.length === 0) {
-    return null
+    return []
   }
 
-  return responsive(theme.sanity.media, spaceIndexes, (spaceIndex) =>
-    fillCSSObject(props, rem(theme.sanity.space[spaceIndex]))
+  return _responsive(theme.sanity.media, spaceIndexes, (spaceIndex) =>
+    fillCSSObject(props, _rem(theme.sanity.space[spaceIndex]))
   )
 }

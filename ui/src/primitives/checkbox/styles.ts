@@ -1,15 +1,15 @@
-import {css} from 'styled-components'
-import {rem, ThemeProps} from '../../styles'
+import {css, FlattenSimpleInterpolation} from 'styled-components'
+import {_rem, _ThemeProps} from '../../styles'
 import {focusRingBorderStyle, focusRingStyle} from '../../styles/internal'
 
-export function checkboxBaseStyles() {
+export function checkboxBaseStyles(): FlattenSimpleInterpolation {
   return css`
     position: relative;
     display: inline-block;
   `
 }
 
-export function inputElementStyles(props: ThemeProps) {
+export function inputElementStyles(props: _ThemeProps): FlattenSimpleInterpolation {
   const {theme} = props
   const color = theme.sanity.color.input
   const {focusRing, input, radius} = theme.sanity
@@ -29,14 +29,14 @@ export function inputElementStyles(props: ThemeProps) {
     & + span {
       position: relative;
       display: block;
-      height: ${rem(input.checkbox.size)};
-      width: ${rem(input.checkbox.size)};
+      height: ${_rem(input.checkbox.size)};
+      width: ${_rem(input.checkbox.size)};
       box-sizing: border-box;
       box-shadow: ${focusRingBorderStyle({
         color: color.default.enabled.border,
         width: input.border.width,
       })};
-      border-radius: ${rem(radius[2])};
+      border-radius: ${_rem(radius[2])};
       line-height: 1;
       background: ${color.default.enabled.bg};
 
@@ -48,7 +48,7 @@ export function inputElementStyles(props: ThemeProps) {
         width: 100%;
 
         & > path {
-          vector-effect: non-scaling-stroke;
+          /* vector-effect: non-scaling-stroke; */
           stroke-width: 2 !important;
         }
       }

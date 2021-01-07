@@ -15,7 +15,7 @@ const symbolOptions = Object.keys(icons).reduce((acc: {[key: string]: string}, k
   return acc
 }, {})
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const border = boolean('Border', true, 'Props')
 
   const customValidity = text('Custom validity', '', 'Props') || undefined
@@ -122,7 +122,7 @@ export const plain = () => {
   )
 }
 
-export const customValidity = () => {
+export const customValidity = (): React.ReactNode => {
   const customValidity = text('Custom validity', 'Invalid value', 'Props') || undefined
 
   return (
@@ -137,7 +137,7 @@ export const customValidity = () => {
   )
 }
 
-export const typed = () => {
+export const typed = (): React.ReactNode => {
   const type = select(
     'Type',
     {
@@ -159,7 +159,7 @@ export const typed = () => {
   return <Example type={type} />
 }
 
-export const tones = () => {
+export const tones = (): React.ReactNode => {
   return (
     <Stack space={4}>
       <Card padding={3}>

@@ -1,27 +1,27 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
-import {getResponsiveProp, rem, responsive, ThemeProps} from '../../styles'
+import {_getResponsiveProp, _rem, _responsive, _ThemeProps} from '../../styles'
 import {Text} from '../text'
 import {AvatarSize} from './types'
 
-function responsiveAvatarCounterSizeStyle(props: {$size: AvatarSize[]} & ThemeProps) {
+function responsiveAvatarCounterSizeStyle(props: {$size: AvatarSize[]} & _ThemeProps) {
   const {theme} = props
   const {avatar, media} = theme.sanity
 
-  return responsive(media, props.$size, (size) => {
+  return _responsive(media, props.$size, (size) => {
     const avatarSize = avatar.sizes[size]
 
     if (!avatarSize) return {}
 
     return {
-      borderRadius: rem(avatarSize.size / 2),
-      minWidth: rem(avatarSize.size),
-      height: rem(avatarSize.size),
+      borderRadius: _rem(avatarSize.size / 2),
+      minWidth: _rem(avatarSize.size),
+      height: _rem(avatarSize.size),
     }
   })
 }
 
-function avatarCounterBaseStyle(props: ThemeProps) {
+function avatarCounterBaseStyle(props: _ThemeProps) {
   const {theme} = props
 
   return css`
@@ -33,7 +33,7 @@ function avatarCounterBaseStyle(props: ThemeProps) {
     color: var(--card-fg-color);
     background: var(--card-bg-color);
     box-shadow: 0 0 0 1px var(--card-bg-color), inset 0 0 0 1.5px var(--card-hairline-hard-color);
-    padding: 0 ${rem(theme.sanity.space[2])};
+    padding: 0 ${_rem(theme.sanity.space[2])};
 
     &:not([hidden]) {
       display: flex;
@@ -46,14 +46,24 @@ const Root = styled.div<{$size: AvatarSize[]}>(
   avatarCounterBaseStyle
 )
 
-interface AvatarCounterProps {
+/**
+ * @public
+ */
+export interface AvatarCounterProps {
   count: number
   size?: AvatarSize | AvatarSize[]
   tone?: 'navbar'
 }
 
-export function AvatarCounter({count, size: sizeProp = 0, tone}: AvatarCounterProps) {
-  const size: AvatarSize[] = getResponsiveProp(sizeProp, [0])
+/**
+ * @public
+ */
+export function AvatarCounter({
+  count,
+  size: sizeProp = 0,
+  tone,
+}: AvatarCounterProps): React.ReactElement {
+  const size: AvatarSize[] = _getResponsiveProp(sizeProp, [0])
 
   return (
     <Root $size={size} data-tone={tone}>

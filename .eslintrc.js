@@ -61,7 +61,6 @@ module.exports = {
       ],
       rules: {
         ...common.rules,
-        '@typescript-eslint/explicit-module-boundary-types': 0,
         '@typescript-eslint/interface-name-prefix': 0,
         '@typescript-eslint/member-delimiter-style': 0,
         '@typescript-eslint/no-empty-interface': 0,

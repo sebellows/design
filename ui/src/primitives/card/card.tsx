@@ -15,6 +15,9 @@ import {ResponsiveBorderProps, ResponsiveRadiusProps, ResponsiveShadowProps} fro
 import {cardStyle} from './styles'
 import {CardStyleProps} from './types'
 
+/**
+ * @public
+ */
 export interface CardProps
   extends BoxProps,
     ResponsiveBorderProps,
@@ -31,6 +34,9 @@ const Root = styled(Box)<
     ResponsiveShadowStyleProps
 >(responsiveBorderStyle, responsiveRadiusStyle, responsiveShadowStyle, cardStyle)
 
+/**
+ * @public
+ */
 export const Card = forwardRef(
   (props: CardProps & Omit<React.HTMLProps<HTMLDivElement>, 'height'>, ref) => {
     const {

@@ -9,7 +9,7 @@ export default {
   decorators: [withCentered, withKnobs],
 }
 
-export const plain = () => {
+export const plain = (): React.ReactNode => {
   const mode = select(
     'Mode',
     {

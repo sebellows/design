@@ -1,7 +1,10 @@
 import {useContext} from 'react'
-import {LayerContext} from './layerContext'
+import {LayerContext, LayerContextValue} from './layerContext'
 
-export function useLayer() {
+/**
+ * @public
+ */
+export function useLayer(): LayerContextValue {
   const layer = useContext(LayerContext)
 
   if (!layer) {

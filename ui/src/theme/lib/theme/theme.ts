@@ -4,8 +4,11 @@ import {ThemeFonts, ThemeFontWeightKey} from './fonts'
 import {ThemeInput} from './input'
 import {ThemeShadow} from './shadow'
 
+/**
+ * @internal
+ */
 // eslint-disable-next-line @typescript-eslint/ban-types
-export interface BaseTheme<Styles extends {} = {}> {
+export interface _BaseTheme<Styles extends {} = {}> {
   avatar: ThemeAvatar
   button: {
     textWeight: ThemeFontWeightKey

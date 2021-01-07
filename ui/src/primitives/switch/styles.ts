@@ -1,9 +1,9 @@
-import {css} from 'styled-components'
-import {rem, ThemeProps} from '../../styles'
+import {css, FlattenSimpleInterpolation} from 'styled-components'
+import {_rem, _ThemeProps} from '../../styles'
 import {focusRingStyle} from '../../styles/internal'
 
 /* Root */
-export function switchBaseStyles() {
+export function switchBaseStyles(): FlattenSimpleInterpolation {
   return css`
     position: relative;
     &:not([hidden]) {
@@ -13,7 +13,7 @@ export function switchBaseStyles() {
 }
 
 /* Input */
-export function switchInputStyles() {
+export function switchInputStyles(): FlattenSimpleInterpolation {
   // Visually hide the input element while keeping it interactive
   return css`
     position: absolute;
@@ -34,7 +34,7 @@ export function switchInputStyles() {
 }
 
 /* Representation */
-export function switchRepresentationStyles(props: ThemeProps) {
+export function switchRepresentationStyles(props: _ThemeProps): FlattenSimpleInterpolation {
   const {theme} = props
   const {focusRing, input} = theme.sanity
   const color = theme.sanity.color.button.default
@@ -47,9 +47,9 @@ export function switchRepresentationStyles(props: ThemeProps) {
       display: block;
     }
     position: relative;
-    width: ${rem(input.switch.width)};
-    height: ${rem(input.switch.height)};
-    border-radius: ${rem(input.switch.height / 2)};
+    width: ${_rem(input.switch.width)};
+    height: ${_rem(input.switch.height)};
+    border-radius: ${_rem(input.switch.height / 2)};
 
     /* Make sure it’s not possible to interact with the wrapper element */
     pointer-events: none;
@@ -86,7 +86,7 @@ export function switchRepresentationStyles(props: ThemeProps) {
 }
 
 /* Track */
-export function switchTrackStyles(props: ThemeProps) {
+export function switchTrackStyles(props: _ThemeProps): FlattenSimpleInterpolation {
   const {theme} = props
   const {input} = theme.sanity
 
@@ -98,16 +98,16 @@ export function switchTrackStyles(props: ThemeProps) {
     position: absolute;
     left: 0;
     top: 0;
-    width: ${rem(input.switch.width)};
-    height: ${rem(input.switch.height)};
-    border-radius: ${rem(input.switch.height / 2)};
+    width: ${_rem(input.switch.width)};
+    height: ${_rem(input.switch.height)};
+    border-radius: ${_rem(input.switch.height / 2)};
   `
 }
 
 /* Thumb */
 export function switchThumbStyles(
-  props: {$checked?: boolean; $indeterminate?: boolean} & ThemeProps
-) {
+  props: {$checked?: boolean; $indeterminate?: boolean} & _ThemeProps
+): FlattenSimpleInterpolation {
   const {$indeterminate, theme} = props
   const {input} = theme.sanity
   const trackWidth = input.switch.width
@@ -123,11 +123,11 @@ export function switchThumbStyles(
       display: block;
     }
     position: absolute;
-    left: ${rem(trackPadding)};
-    top: ${rem(trackPadding)};
-    height: ${rem(size)};
-    width: ${rem(size)};
-    border-radius: ${rem(size / 2)};
+    left: ${_rem(trackPadding)};
+    top: ${_rem(trackPadding)};
+    height: ${_rem(size)};
+    width: ${_rem(size)};
+    border-radius: ${_rem(size / 2)};
     transition-property: transform;
     transition-duration: ${input.switch.transitionDurationMs}ms;
     transition-timing-function: ${input.switch.transitionTimingFunction};

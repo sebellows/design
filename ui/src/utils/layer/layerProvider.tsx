@@ -1,13 +1,18 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react'
 import {LayerContext} from './layerContext'
 
-export function LayerProvider({
-  children,
-  zOffset = 0,
-}: {
+/**
+ * @public
+ */
+export interface LayerProviderProps {
   children?: React.ReactNode
   zOffset?: number
-}) {
+}
+
+/**
+ * @public
+ */
+export function LayerProvider({children, zOffset = 0}: LayerProviderProps): React.ReactElement {
   const parent = useContext(LayerContext)
   const zIndex = parent ? parent.zIndex + zOffset : zOffset
   const [size, setSize] = useState(0)

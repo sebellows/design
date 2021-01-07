@@ -3,13 +3,19 @@ import {useRootTheme} from './hooks'
 import {ThemeColorName, ThemeColorSchemeKey} from './lib/theme'
 import {ThemeProvider} from './themeProvider'
 
-interface ThemeColorProviderProps {
+/**
+ * @public
+ */
+export interface ThemeColorProviderProps {
   children?: React.ReactNode
   scheme?: ThemeColorSchemeKey
   tone?: ThemeColorName
 }
 
-export function ThemeColorProvider(props: ThemeColorProviderProps) {
+/**
+ * @public
+ */
+export function ThemeColorProvider(props: ThemeColorProviderProps): React.ReactElement {
   const {children, scheme, tone} = props
   const root = useRootTheme()
 

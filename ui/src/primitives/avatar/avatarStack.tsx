@@ -1,6 +1,6 @@
 import React, {cloneElement, forwardRef} from 'react'
 import styled, {css} from 'styled-components'
-import {getResponsiveProp, rem, responsive, ThemeProps} from '../../styles'
+import {_getResponsiveProp, _rem, _responsive, _ThemeProps} from '../../styles'
 import {childrenToElementArray} from '../helpers'
 import {AvatarCounter} from './avatarCounter'
 import {AvatarSize} from './types'
@@ -19,18 +19,18 @@ function avatarStackStyle() {
   `
 }
 
-function responsiveAvatarStackSizeStyle(props: {size: AvatarSize | AvatarSize[]} & ThemeProps) {
+function responsiveAvatarStackSizeStyle(props: {size: AvatarSize | AvatarSize[]} & _ThemeProps) {
   const {theme} = props
   const {avatar, media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.size), (size) => {
+  return _responsive(media, _getResponsiveProp(props.size), (size) => {
     const avatarSize = avatar.sizes[size]
 
     if (!avatarSize) return {}
 
     return {
       '& > div + div': {
-        marginLeft: rem(avatarSize.distance),
+        marginLeft: _rem(avatarSize.distance),
       },
     }
   })
@@ -41,13 +41,19 @@ const Root = styled.div<{size: AvatarSize | AvatarSize[]}>(
   avatarStackStyle
 )
 
-interface AvatarStackProps {
+/**
+ * @public
+ */
+export interface AvatarStackProps {
   children: React.ReactNode
   maxLength?: number
   size?: AvatarSize | AvatarSize[]
   tone?: 'navbar'
 }
 
+/**
+ * @public
+ */
 export const AvatarStack = forwardRef(
   (
     props: AvatarStackProps & Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'ref'>,

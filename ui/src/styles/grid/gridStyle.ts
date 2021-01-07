@@ -1,8 +1,9 @@
-import {getResponsiveProp, rem, responsive} from '../helpers'
-import {ThemeProps} from '../types'
+import {CSSObject} from 'styled-components'
+import {_getResponsiveProp, _rem, _responsive} from '../helpers'
+import {_ThemeProps} from '../types'
 import {ResponsiveGridStyleProps} from './types'
 
-const GRID_CSS = {
+const GRID_CSS: CSSObject = {
   '&:not([hidden])': {display: 'grid'},
   '&[data-as="ul"],&[data-as="ol"]': {
     listStyle: 'none',
@@ -23,9 +24,11 @@ const GRID_AUTO_ROWS = {
   fr: 'minmax(0, 1fr)',
 }
 
-export function responsiveGridStyle() {
+export function responsiveGridStyle(): ((
+  props: ResponsiveGridStyleProps & _ThemeProps
+) => CSSObject[])[] {
   return [
-    GRID_CSS,
+    () => [GRID_CSS],
     responsiveGridAutoFlowStyle,
     responsiveGridAutoRowsStyle,
     responsiveGridAutoColsStyle,
@@ -37,74 +40,74 @@ export function responsiveGridStyle() {
   ]
 }
 
-function responsiveGridAutoFlowStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridAutoFlowStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$autoFlow), (autoFlow) => ({
+  return _responsive(media, _getResponsiveProp(props.$autoFlow), (autoFlow) => ({
     gridAutoFlow: autoFlow,
   }))
 }
 
-function responsiveGridAutoRowsStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridAutoRowsStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$autoRows), (autoRows) => ({
+  return _responsive(media, _getResponsiveProp(props.$autoRows), (autoRows) => ({
     gridAutoRows: autoRows && GRID_AUTO_ROWS[autoRows],
   }))
 }
 
-function responsiveGridAutoColsStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridAutoColsStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$autoCols), (autoCols) => ({
+  return _responsive(media, _getResponsiveProp(props.$autoCols), (autoCols) => ({
     gridAutoColumns: autoCols && GRID_AUTO_COLUMS[autoCols],
   }))
 }
 
-function responsiveGridColumnsStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridColumnsStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$columns), (columns) => ({
+  return _responsive(media, _getResponsiveProp(props.$columns), (columns) => ({
     gridTemplateColumns: columns && `repeat(${columns},minmax(0,1fr));`,
   }))
 }
 
-function responsiveGridRowsStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridRowsStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$rows), (rows) => ({
+  return _responsive(media, _getResponsiveProp(props.$rows), (rows) => ({
     gridTemplateRows: rows && `repeat(${rows},minmax(0,1fr));`,
   }))
 }
 
-function responsiveGridGapStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridGapStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media, space} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$gap), (gap) => ({
-    gridGap: gap ? rem(space[gap]) : undefined,
+  return _responsive(media, _getResponsiveProp(props.$gap), (gap) => ({
+    gridGap: gap ? _rem(space[gap]) : undefined,
   }))
 }
 
-function responsiveGridGapXStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridGapXStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media, space} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$gapX), (gapX) => ({
-    columnGap: gapX ? rem(space[gapX]) : undefined,
+  return _responsive(media, _getResponsiveProp(props.$gapX), (gapX) => ({
+    columnGap: gapX ? _rem(space[gapX]) : undefined,
   }))
 }
 
-function responsiveGridGapYStyle(props: ResponsiveGridStyleProps & ThemeProps) {
+function responsiveGridGapYStyle(props: ResponsiveGridStyleProps & _ThemeProps) {
   const {theme} = props
   const {media, space} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$gapY), (gapY) => ({
-    rowGap: gapY ? rem(space[gapY]) : undefined,
+  return _responsive(media, _getResponsiveProp(props.$gapY), (gapY) => ({
+    rowGap: gapY ? _rem(space[gapY]) : undefined,
   }))
 }

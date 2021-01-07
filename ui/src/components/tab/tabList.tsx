@@ -5,6 +5,9 @@ interface TabListProps extends Omit<InlineProps, 'as' | 'height'> {
   children: React.ReactElement[]
 }
 
+/**
+ * @public
+ */
 export const TabList = forwardRef(
   (props: TabListProps & Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'height'>, ref) => {
     const {children, ...restProps} = props

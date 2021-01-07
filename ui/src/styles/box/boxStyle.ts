@@ -1,6 +1,7 @@
 import {Property} from 'csstype'
-import {getResponsiveProp, responsive} from '../helpers'
-import {ThemeProps} from '../types'
+import {CSSObject} from 'styled-components'
+import {_getResponsiveProp, _responsive} from '../helpers'
+import {_ThemeProps} from '../types'
 import {ResponsiveBoxStyleProps} from './types'
 
 const BOX_SIZING: {[key: string]: Property.BoxSizing} = {
@@ -13,7 +14,9 @@ const BOX_HEIGHT = {
   fill: '100%',
 }
 
-export function responsiveBoxStyle() {
+export function responsiveBoxStyle(): ((
+  props: ResponsiveBoxStyleProps & _ThemeProps
+) => CSSObject[])[] {
   return [
     responsiveBoxSizingStyle,
     responsiveBoxHeightStyle,
@@ -22,38 +25,38 @@ export function responsiveBoxStyle() {
   ]
 }
 
-function responsiveBoxDisplayStyle(props: ResponsiveBoxStyleProps & ThemeProps) {
+function responsiveBoxDisplayStyle(props: ResponsiveBoxStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$display), (display) => ({
+  return _responsive(media, _getResponsiveProp(props.$display), (display) => ({
     '&:not([hidden])': {display},
   }))
 }
 
-function responsiveBoxSizingStyle(props: ResponsiveBoxStyleProps & ThemeProps) {
+function responsiveBoxSizingStyle(props: ResponsiveBoxStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$sizing), (sizing) => ({
+  return _responsive(media, _getResponsiveProp(props.$sizing), (sizing) => ({
     boxSizing: BOX_SIZING[sizing],
   }))
 }
 
-function responsiveBoxHeightStyle(props: ResponsiveBoxStyleProps & ThemeProps) {
+function responsiveBoxHeightStyle(props: ResponsiveBoxStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$height), (height) => ({
+  return _responsive(media, _getResponsiveProp(props.$height), (height) => ({
     height: BOX_HEIGHT[height],
   }))
 }
 
-function responsiveBoxOverflowStyle(props: ResponsiveBoxStyleProps & ThemeProps) {
+function responsiveBoxOverflowStyle(props: ResponsiveBoxStyleProps & _ThemeProps) {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$overflow), (overflow) => ({
+  return _responsive(media, _getResponsiveProp(props.$overflow), (overflow) => ({
     overflow,
   }))
 }

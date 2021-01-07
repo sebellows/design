@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react'
 
-export function usePrefersDark() {
+/**
+ * @public
+ */
+export function usePrefersDark(): boolean {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {

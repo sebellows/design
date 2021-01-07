@@ -1,7 +1,7 @@
 import {CloseIcon} from '@sanity/icons'
 import React, {forwardRef, useCallback, useEffect, useRef, useState} from 'react'
 import styled from 'styled-components'
-import {focusFirstDescendant, focusLastDescendant} from '../../helpers'
+import {_focusFirstDescendant, _focusLastDescendant} from '../../helpers'
 import {useClickOutside, useGlobalKeyDown} from '../../hooks'
 import {Box, Button, Card, Container, Flex, Text} from '../../primitives'
 import {ResponsivePaddingProps, ResponsiveWidthProps} from '../../primitives/types'
@@ -15,6 +15,9 @@ import {
 } from './styles'
 import {DialogPosition} from './types'
 
+/**
+ * @public
+ */
 export interface DialogProps extends ResponsivePaddingProps, ResponsiveWidthProps {
   cardRadius?: number | number[]
   cardShadow?: number | number[]
@@ -107,7 +110,7 @@ const DialogCard = forwardRef((props: DialogCardProps, ref) => {
   useEffect(() => {
     // On mount: focus the first interactive element in the contents
     if (localContentRef.current) {
-      focusFirstDescendant(localContentRef.current)
+      _focusFirstDescendant(localContentRef.current)
     }
   }, [])
 
@@ -188,6 +191,9 @@ const DialogCard = forwardRef((props: DialogCardProps, ref) => {
 
 DialogCard.displayName = 'DialogCard'
 
+/**
+ * @public
+ */
 export const Dialog = forwardRef(
   (
     props: DialogProps & Omit<React.HTMLProps<HTMLDivElement>, 'as' | 'id' | 'width'>,
@@ -221,13 +227,13 @@ export const Dialog = forwardRef(
       }
 
       if (target === preDivRef.current) {
-        focusLastDescendant(cardElement)
+        _focusLastDescendant(cardElement)
 
         return
       }
 
       if (target === postDivRef.current) {
-        focusFirstDescendant(cardElement)
+        _focusFirstDescendant(cardElement)
 
         return
       }

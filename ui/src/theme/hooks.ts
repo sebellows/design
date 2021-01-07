@@ -1,14 +1,20 @@
 import {useContext} from 'react'
 import {useTheme as useStyledTheme} from 'styled-components'
-import {ThemeContext} from './themeContext'
+import {ThemeContext, ThemeContextValue} from './themeContext'
 
 import {Theme} from './types'
 
+/**
+ * @public
+ */
 export function useTheme(): Theme {
   return useStyledTheme() as Theme
 }
 
-export function useRootTheme() {
+/**
+ * @public
+ */
+export function useRootTheme(): ThemeContextValue {
   const rootTheme = useContext(ThemeContext)
 
   if (!rootTheme) {

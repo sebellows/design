@@ -1,11 +1,12 @@
-import {getResponsiveProp, responsive, ThemeProps} from '../../styles'
+import {CSSObject} from 'styled-components'
+import {_getResponsiveProp, _responsive, _ThemeProps} from '../../styles'
 import {DialogPosition} from './types'
 
 export interface ResponsiveDialogPositionStyleProps {
   $position: DialogPosition | DialogPosition[]
 }
 
-export function dialogStyle({theme}: ThemeProps) {
+export function dialogStyle({theme}: _ThemeProps): CSSObject {
   const color = theme.sanity.color.base
 
   return {
@@ -25,10 +26,10 @@ export function dialogStyle({theme}: ThemeProps) {
 }
 
 export function responsiveDialogPositionStyle(
-  props: ResponsiveDialogPositionStyleProps & ThemeProps
-) {
+  props: ResponsiveDialogPositionStyleProps & _ThemeProps
+): CSSObject[] {
   const {theme} = props
   const {media} = theme.sanity
 
-  return responsive(media, getResponsiveProp(props.$position), (position) => ({'&&': {position}}))
+  return _responsive(media, _getResponsiveProp(props.$position), (position) => ({'&&': {position}}))
 }

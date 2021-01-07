@@ -1,11 +1,14 @@
-import {ThemeProps} from '../types'
+import {CSSObject} from 'styled-components'
+import {_ThemeProps} from '../types'
 import {responsiveFont} from './responsiveFont'
-import {ResponsiveFontStyleProps} from './types'
+import {_ResponsiveFontStyleProps} from './types'
 
 /**
  * Get responsive CSS for the `code` font style.
- * @beta Should not be used in production, as this might change.
+ * @internal
  */
-export function responsiveCodeFontStyle(props: ResponsiveFontStyleProps & ThemeProps) {
+export function _responsiveCodeFontStyle(
+  props: _ResponsiveFontStyleProps & _ThemeProps
+): CSSObject[] {
   return responsiveFont('code', props)
 }
